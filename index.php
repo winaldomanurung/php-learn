@@ -1,45 +1,52 @@
 <?php
 
-// CONSTANT
+// DATA TYPES & TYPE CASTING
 
-$firstname = 'Winaldo';
-$firstname = 'Satryadi';
+# 4 Scalar Types
+  # boolean
+  $completed = true;
+  # int
+  $score = 75;
+  # float
+  $price = 8.99;
+  # string
+  $greeting = "Hello, Aldo";
 
-// untuk membuat constant kita gunakan:
+  echo $completed . '<br />';
+  echo $score . '<br />';  
+  echo $price . '<br />';
+  echo $greeting . '<br />';
 
-// CARA 1
-// define('name', 'value') => case sensitive
-// defined at run time
-define('STATUS_PAID', 'paid');
+# 4 Compound Types
+  # array
+  $companies = [1, 2, 3, 4, 0.5, -2, true, 'a'];
+  # object
+  # callable
+  # iterable
 
-// ketika reference ke constant kita ga perlu $
-echo STATUS_PAID;
+  print_r($companies);
 
-// ketika mau cek apakah constant sudah pernah dibuat:
-echo defined('STATUS_PAID');
-
-// CARA 2
-// const name = value
-// defined at compile time => gabisa digunakan di dalam control structure
-const STATUS_PAID2 = 'paid';
-echo STATUS_PAID2;
-
-// CARA 3
-// dynamic constant name
-$paid = 'PAID3';
-define('STATUS_' . $paid, 4);
-echo STATUS_PAID3;
-
-// CARA 4
-// predefined constant
-echo PHP_VERSION;
-
-// CARA 5
-// magic constant
-echo __LINE__;
+# 2 Special Types
+  # resource
+  # null
 
 
-// VARIABLE VARIABLES
-$foo = 'bar';
-$$foo = 'baz'; //ini sama dengan $bar = 'baz'
-echo $foo, $bar;
+// to check type
+echo gettype($score);
+echo '<br />';
+var_dump($completed); //PHP will define the type in the runtime
+echo '<br />';
+
+declare(strict_types=1);
+
+// type hinting
+function sum(int $x, int $y){
+  var_dump($x, $y);
+  echo '<br />';
+  return $x + $y;
+}
+
+echo sum(2,3); // 5
+echo '<br />';
+echo sum(2,'3'); // 5
+echo '<br />';
