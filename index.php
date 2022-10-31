@@ -1,80 +1,76 @@
 <?php
 
-// ARRAY
-$programmingLanguages = ['PHP', 'Java', 'Python'];
+// OPERATORS
+
+// string operator
+$x = 'Hello';
+$z = $x . ' World';
 // or
-// $programmingLanguages = array('PHP', 'Java', 'Python');
+$x .= ' World';
+echo $x;
+echo $z;
+echo "<br>";
 
+// comparison operators 
+$x = 50;
+$y = '50';
 
-// using index (kita gabisa gunakan negative index)
-echo $programmingLanguages[1];
-// untuk mengecek apakah index exist
-var_dump(isset($programmingLanguages[3])); //bool(false)
+var_dump($x == $y); //membandingkan nilai yang telah di cast => true
+echo "<br>";
+var_dump($x != $y); //membandingkan nilai yang telah di cast => false
+echo "<br>";
+var_dump($x === $y); //membandingkan nilai yang belum di cast => false
+echo "<br>";
+var_dump($x !== $y); //membandingkan nilai yang belum di cast => true
+echo "<br>";
+var_dump($x <> $y); //sama seperti !=
+echo "<br>";
+var_dump($x <=> $y); //0 jika sama, -1 jika y lebih besar, 1 jika x lebih besar
+echo "<br>";
 
-// mutate
-$programmingLanguages[1] = 'C++';
+/*
+$x = 'Hello World';
+$y = strpos ($x, 'H'); 
+echo $y; //0
 
-// length of array
-echo count($programmingLanguages);
+if($y == false){
+  echo 'H not found'; //ini yang akan dijalankan, karena dalam loose comparison 0 == false merupakan true
+} else {
+  echo 'H found at index ' . $y;
+}
 
-// tambah element array di end of array
-$programmingLanguages[] = 'Javascript';
-// or
-array_push($programmingLanguages, 'Go', 'C#');
+if($y === false){
+  echo 'H not found'; 
+} else {
+  echo 'H found at index ' . $y; //ini yang akan dijalankan, karena dalam strict comparison 0 === false merupakan false
+}
+*/
+echo 'var_dump($x ?? $y) = ';
+var_dump($x ?? $y); //sama dengan:
+/*
+$result = x ?? y
+The value of $result is x if x exists, and is not NULL.
+If x does not exist, or is NULL, the value of $x is y.
+*/
+echo "<br>";
 
-// define our own custom key
-$programmingLanguagesVersion = [
-  'php' => '8.0',
-  'python' => '3.9',
-];
+echo 'var_dump($x ?: $y) = ';
+var_dump($x ?: $y); //sama dengan:
+/*
+$result = expr1 ? expr2 : expr3	
+The value of $x is expr2 if expr1 = TRUE.
+The value of $x is expr3 if expr1 = FALSE
+*/
+echo "<br>";
 
-$programmingLanguagesVersion['go'] = '1.15';
+$x = 'Hello World';
+$y = strpos ($x, 'H'); 
+$result = $y === false ? 'H not found' : 'H found at index ' . $y;
+echo $result;
+echo "<br>";
 
-// melihat content array
-echo '<pre>';
-var_dump($programmingLanguages);
-echo '</pre>';
+$x = null;
+$y = $x ?? 'hello';
 
-echo '<pre>';
-print_r($programmingLanguagesVersion);
-echo '</pre>';
-
-// key name di dalam array di casting menjadi string
-$array = [
-  true => 'a',
-  2 => 'b',
-  4.8 => 'c',
-  'd'
-];
-
-echo '<pre>';
-var_dump($array);
-echo '</pre>';
-
-// remove element from array
-// pop => meremove yang terakhir
-echo array_pop($array);
-echo '<pre>';
-var_dump($array);
-echo '</pre>';
-
-// shift => meremove yang terakhir
-echo array_shift($array);
-echo '<pre>';
-var_dump($array);
-echo '</pre>';
-
-// unset
-unset($array[1]);
-echo '<pre>';
-var_dump($array);
-echo '</pre>';
-
-// casting
-$x = 5;
-var_dump((array) $x);
-
-// mengecek apakah key exist
-$array2 = ['a'=> 1, 'b' => null];
-var_dump((array_key_exists('b', $array2))); //hanya mengecek ada atau tidak
-var_dump(isset($array2['b'])); //mengecek ada atau tidak dan mengecek apakah valuenya null
+var_dump($y); //dia akan menjadi hello, karena x adalah null
+//kalau x bukan null maka dia akan x
