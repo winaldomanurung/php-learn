@@ -1,52 +1,37 @@
 <?php
 
-// DATA TYPES & TYPE CASTING
+// BOOLEAN
+/*
+ integers: 0 & -0 => false
+ floats: 0.0 & -0.0 => false
+ string: '' & '0' => false
+ array: [] => false
+ null: false
+*/
 
-# 4 Scalar Types
-  # boolean
-  $completed = true;
-  # int
-  $score = 75;
-  # float
-  $price = 8.99;
-  # string
-  $greeting = "Hello, Aldo";
+/*
+anything else will be true:
+'5', 5, [5], 'false'
+*/
 
-  echo $completed . '<br />';
-  echo $score . '<br />';  
-  echo $price . '<br />';
-  echo $greeting . '<br />';
+$isComplete = true;
+$isComplete2 = (string) true;
+var_dump($isComplete); //bool(true)
+var_dump($isComplete2); //string(1) "1"
 
-# 4 Compound Types
-  # array
-  $companies = [1, 2, 3, 4, 0.5, -2, true, 'a'];
-  # object
-  # callable
-  # iterable
-
-  print_r($companies);
-
-# 2 Special Types
-  # resource
-  # null
-
-
-// to check type
-echo gettype($score);
-echo '<br />';
-var_dump($completed); //PHP will define the type in the runtime
-echo '<br />';
-
-declare(strict_types=1);
-
-// type hinting
-function sum(int $x, int $y){
-  var_dump($x, $y);
-  echo '<br />';
-  return $x + $y;
+if($isComplete){
+  echo 'True';
+} else {
+  echo 'False';
 }
 
-echo sum(2,3); // 5
-echo '<br />';
-echo sum(2,'3'); // 5
-echo '<br />';
+echo $isComplete;
+/*
+if true, akan print 1
+if false, eakan print empty string
+*/
+
+echo (string) $isComplete;
+
+echo (is_bool($isComplete));
+var_dump (is_bool($isComplete));
