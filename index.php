@@ -1,52 +1,16 @@
 <?php
 
-// STRING
-$firstname = 'Will';
-$lastname = 'Smith';
+// NULL
 
-// kita bisa gunakan single quote (di dalamnya kita gabisa use variable) or double quote (di dalamnya kita bisa use variable)
-$name  = "{$firstname} Smith";
+// 1. null constant
+$x = null;
+echo $x; //akan menghasilkan empty string
+var_dump($x); //akan menghasilkan NULL
 
-echo $firstname . "<br>";
-echo $lastname . "<br>";
-echo $name . "<br>";
+// 2. something that has not been defined
+var_dump($y);
 
-// akses string index
-echo $name[1] . "<br />";
-echo $name[-2] . "<br />";
-$name[1] = 'I';
-echo $name . "<br />";
-
-$name[15] = 'I';
-echo $name . "<br />";
-
-// selain ' ' dan " " , kita juga bisa represent string dengan Heredoc dan Nowdoc.
-// heredoc treats string like they are in double quote
-// nowdoc treats string like they are in single quote
-
-// HEREDOC 
-$text = <<<TEXT
-Line 1 $firstname
-Line 2 $lastname
-Line 3 $name
-TEXT;
-
-echo $text; 
-//Line 1 Will Line 2 Smith Line 3 Will Smith
-echo nl2br($text) . "<br>"; 
-//Line 1 Will
-//Line 2 Smith
-//Line 3 Will Smith
-
-// NOWDOC 
-$text = <<<'TEXT'
-Line 1 $firstname
-Line 2 $lastname
-Line 3 $name
-TEXT;
-echo $text; 
-//Line 1 $firstname Line 2 $lastname Line 3 $name
-echo nl2br($text) . "<br>"; 
-//Line 1 $firstname
-//Line 2 $lastname
-//Line 3 $name
+// 3. explicit unset
+$z = 123;
+unset($z);
+var_dump($z);
