@@ -1,37 +1,52 @@
 <?php
 
-// FLOAT
-$x = 14.5;
-$y = 14.5e3;
-$z = 14.5e-3;
+// STRING
+$firstname = 'Will';
+$lastname = 'Smith';
 
-echo $x . "<br>\n";
-echo $y . "<br>\n";
-echo $z . "<br>\n";
+// kita bisa gunakan single quote (di dalamnya kita gabisa use variable) or double quote (di dalamnya kita bisa use variable)
+$name  = "{$firstname} Smith";
 
-// sama sepertin INT, FLOAT ini juga memiliki MAX yang tergantung dengan platform
-echo PHP_FLOAT_MAX . "<br>\n";
-echo PHP_FLOAT_MIN . "<br>\n";
+echo $firstname . "<br>";
+echo $lastname . "<br>";
+echo $name . "<br>";
 
-$a = floor((0.1 * 0.7) + 10); //akan menghasilkan 7
-// hal ini disebabkan di dalam float, mereka tidak memiliki the exact representation as the binary number yang mana digunakan untuk storing float number. Nah ketika dia diconvert ke binary itulah dia loses some precision
+// akses string index
+echo $name[1] . "<br />";
+echo $name[-2] . "<br />";
+$name[1] = 'I';
+echo $name . "<br />";
 
-// kita harus hati-hati dalam pembandingan float:
-$x = 0.23;
-$y = 1-0.77;
+$name[15] = 'I';
+echo $name . "<br />";
 
-var_dump($x, $y);
+// selain ' ' dan " " , kita juga bisa represent string dengan Heredoc dan Nowdoc.
+// heredoc treats string like they are in double quote
+// nowdoc treats string like they are in single quote
 
-if($x == $y){
-  echo 'Yes';
-} else {
-  echo 'No'; //hasilnya adalah No
-}
+// HEREDOC 
+$text = <<<TEXT
+Line 1 $firstname
+Line 2 $lastname
+Line 3 $name
+TEXT;
 
-// kita bisa mendapatkan NAN ketika kita membuat operasi yang tidak bisa dikalkulasi
-$z = log(-1);
-echo $z;
+echo $text; 
+//Line 1 Will Line 2 Smith Line 3 Will Smith
+echo nl2br($text) . "<br>"; 
+//Line 1 Will
+//Line 2 Smith
+//Line 3 Will Smith
 
-// kita bisa mendapatkan INF ketika kita membuat operasi yang tidak melebihi batas MAX FLOAT
-$z = PHP_FLOAT_MAX * 2;
-echo $z;
+// NOWDOC 
+$text = <<<'TEXT'
+Line 1 $firstname
+Line 2 $lastname
+Line 3 $name
+TEXT;
+echo $text; 
+//Line 1 $firstname Line 2 $lastname Line 3 $name
+echo nl2br($text) . "<br>"; 
+//Line 1 $firstname
+//Line 2 $lastname
+//Line 3 $name
