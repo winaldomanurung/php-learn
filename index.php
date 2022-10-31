@@ -1,40 +1,37 @@
 <?php
 
-// INTEGER
-/* 
-nilai max dari integer tergantung dari platformnya: 32 bit beda dengan 64 bit
-kita bisa cek denan PHP_INT_MIN dan PHP_INT_MAX
-*/
-
-echo PHP_INT_MAX . "<br>\n";
-echo PHP_INT_MIN . "<br>\n";
-
-// integer can be represented in: 
-// decimal or base 10:
-$x = 5;
-
-// hexadecimal or base 16 - diawali 0x:
-$y = 0x2A;
-
-// octal or base 8 - diawali 0:
-$z = 055;
-
-// binary or base 2 - diawali 0b:
-$b = 0b110;
+// FLOAT
+$x = 14.5;
+$y = 14.5e3;
+$z = 14.5e-3;
 
 echo $x . "<br>\n";
 echo $y . "<br>\n";
 echo $z . "<br>\n";
-echo $b . "<br>\n";
 
-// ketika kita membuat bilangan yang melebihi MAX integer, maka dia akan berubah menjadi float
-$max = PHP_INT_MAX + 1; //ini akan jadi float
+// sama sepertin INT, FLOAT ini juga memiliki MAX yang tergantung dengan platform
+echo PHP_FLOAT_MAX . "<br>\n";
+echo PHP_FLOAT_MIN . "<br>\n";
 
-// cara mengubah suatu variable ke integer adalah dengan menggunakan casting:
-$cast = (int) true;
-echo $cast . "<br>\n";
+$a = floor((0.1 * 0.7) + 10); //akan menghasilkan 7
+// hal ini disebabkan di dalam float, mereka tidak memiliki the exact representation as the binary number yang mana digunakan untuk storing float number. Nah ketika dia diconvert ke binary itulah dia loses some precision
 
+// kita harus hati-hati dalam pembandingan float:
+$x = 0.23;
+$y = 1-0.77;
 
-// kita bisa gunakan _ untuk readibility
-$mill = 200_000_000;
-echo $mill;
+var_dump($x, $y);
+
+if($x == $y){
+  echo 'Yes';
+} else {
+  echo 'No'; //hasilnya adalah No
+}
+
+// kita bisa mendapatkan NAN ketika kita membuat operasi yang tidak bisa dikalkulasi
+$z = log(-1);
+echo $z;
+
+// kita bisa mendapatkan INF ketika kita membuat operasi yang tidak melebihi batas MAX FLOAT
+$z = PHP_FLOAT_MAX * 2;
+echo $z;
