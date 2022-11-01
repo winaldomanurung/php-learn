@@ -1,76 +1,95 @@
 <?php
 
-// OPERATORS
+// OPERATORS II
 
-// string operator
-$x = 'Hello';
-$z = $x . ' World';
-// or
-$x .= ' World';
-echo $x;
-echo $z;
-echo "<br>";
+// error control operator
+// kita gunakan untuk suppress error
+//$x = file('foo.txt'); //menghasilkan error
+$x = @file('foo.txt'); //tidak menghasilkan error => not recommended
 
-// comparison operators 
-$x = 50;
-$y = '50';
+// increment/decrement operator
+$y = 5;
+echo $y++; //output 5, namun bts menjadi 6
+echo ++$y; //output 6 dan bts menjadi 6
 
-var_dump($x == $y); //membandingkan nilai yang telah di cast => true
-echo "<br>";
-var_dump($x != $y); //membandingkan nilai yang telah di cast => false
-echo "<br>";
-var_dump($x === $y); //membandingkan nilai yang belum di cast => false
-echo "<br>";
-var_dump($x !== $y); //membandingkan nilai yang belum di cast => true
-echo "<br>";
-var_dump($x <> $y); //sama seperti !=
-echo "<br>";
-var_dump($x <=> $y); //0 jika sama, -1 jika y lebih besar, 1 jika x lebih besar
-echo "<br>";
+// logical operator (&&, ||, !, and, or, xor)
+// xor = The return value will only be true if one of the statements is true and the other one is false.
+$a = true;
+$b = false;
 
-/*
-$x = 'Hello World';
-$y = strpos ($x, 'H'); 
-echo $y; //0
+var_dump($x && $y);
+echo '<br>';
+var_dump($x and $y);
+echo '<br>';
+var_dump($x xor $y);
+echo '<br>';
 
-if($y == false){
-  echo 'H not found'; //ini yang akan dijalankan, karena dalam loose comparison 0 == false merupakan true
-} else {
-  echo 'H found at index ' . $y;
+$c = $a && $b; 
+$d = $a and $b; 
+var_dump($c); //false => karena satu salah dan satu benar
+echo '<br>';
+var_dump($d); //true => karena $d = $a adalah benar
+echo '<br>';
+//precedence operator => the assignment operator && has higher precedence than the AND operator
+
+// short circuiting in logical operator
+var_dump($a || $b); //$b disini tidak disentuh karena $a = true saja sudah memastikan dia akan true
+echo '<br>';
+
+function hello(){
+  echo 'hello world';
+  return false;
 }
+var_dump($a || hello()); //hello tidak dijalankan
+echo '<br>';
+var_dump($a && hello()); //hello dijalankan
+echo '<br>';
 
-if($y === false){
-  echo 'H not found'; 
-} else {
-  echo 'H found at index ' . $y; //ini yang akan dijalankan, karena dalam strict comparison 0 === false merupakan false
-}
-*/
-echo 'var_dump($x ?? $y) = ';
-var_dump($x ?? $y); //sama dengan:
-/*
-$result = x ?? y
-The value of $result is x if x exists, and is not NULL.
-If x does not exist, or is NULL, the value of $x is y.
-*/
-echo "<br>";
+// bitwise operator (&, |, ^^ , ~, <<, >>)
+$x = 6;
+$y = 3;
 
-echo 'var_dump($x ?: $y) = ';
-var_dump($x ?: $y); //sama dengan:
-/*
-$result = expr1 ? expr2 : expr3	
-The value of $x is expr2 if expr1 = TRUE.
-The value of $x is expr3 if expr1 = FALSE
-*/
-echo "<br>";
+var_dump($x & $y); //2
+echo '<br>';
+// $x = 6 => 110
+// & => return 1 if both of them are 1
+// $y = 3 => 011
+//    = 2 => 010
 
-$x = 'Hello World';
-$y = strpos ($x, 'H'); 
-$result = $y === false ? 'H not found' : 'H found at index ' . $y;
-echo $result;
-echo "<br>";
+var_dump($x | $y); //7
+echo '<br>';
+// $x = 6 => 110
+// | => return 1 if one of them are 1
+// $y = 3 => 011
+//    = 7 => 111
 
-$x = null;
-$y = $x ?? 'hello';
+var_dump($x ^ $y); //5
+echo '<br>';
+// $x = 6 => 110
+// ^ => return 1 if one of them are 1, jika keduanya 1 maka jadi 0
+// $y = 3 => 011
+//    = 5 => 101
 
-var_dump($y); //dia akan menjadi hello, karena x adalah null
-//kalau x bukan null maka dia akan x
+var_dump(~$x & $y); //1
+echo '<br>';
+// $x = 6 => 110
+// ~ => flip the bits
+//~$x = 6 => 001
+// &
+// $y = 3 => 011
+//    = 1 => 001
+
+var_dump($x << $y); //48
+echo '<br>';
+// $x = 6 => 110
+// << => shift bits to the left (multiply by 2)
+// $y = 3 => sebanyak 3x
+//    = 48 => 110000
+// sama aja dengan 6 kali 2 sebanyak 3x
+
+var_dump($x >> $y); //0
+echo '<br>';
+// $x = 6 => 110
+// << => shift bits to the right (multiply by 2)
+// $y = 3 => sebanyak 3x
+//    = 0 => 
